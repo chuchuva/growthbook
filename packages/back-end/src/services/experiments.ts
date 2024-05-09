@@ -21,6 +21,7 @@ import {
   getMatchingRules,
   MatchingRule,
   validateCondition,
+  isDefined,
 } from "shared/util";
 import {
   ExperimentMetricInterface,
@@ -37,7 +38,6 @@ import {
   ExperimentSnapshotAnalysisSettings,
   ExperimentSnapshotInterface,
   ExperimentSnapshotSettings,
-  MetricForSnapshot,
   SnapshotVariation,
 } from "../../types/experiment-snapshot";
 import {
@@ -395,7 +395,7 @@ export function getSnapshotSettings({
         experiment.metricOverrides
       )
     )
-    .filter(Boolean) as MetricForSnapshot[];
+    .filter(isDefined);
 
   return {
     manual: !experiment.datasource,
@@ -1952,7 +1952,7 @@ export async function getRegressionAdjustmentInfo(
   ]);
   const allExperimentMetrics = allExperimentMetricIds
     .map((id) => metricMap.get(id))
-    .filter(Boolean);
+    .filter(isDefined);
 
   const denominatorMetrics = allExperimentMetrics
     .filter((m) => m && !isFactMetric(m) && m.denominator)

@@ -57,12 +57,11 @@ export default function SingleRoleSelector({
         sort={false}
         formatOptionLabel={(value) => {
           const r = roles.find((r) => r.id === value.label);
+          if (!r) return undefined;
           return (
             <div className="d-flex align-items-center">
-              {/* @ts-expect-error TS(2532) If you come across this, please fix it!: Object is possibly 'undefined'. */}
               <strong style={{ width: 110 }}>{r.id}</strong>
               <small className="ml-2">
-                {/* @ts-expect-error TS(2532) If you come across this, please fix it!: Object is possibly 'undefined'. */}
                 <em>{r.description}</em>
               </small>
             </div>

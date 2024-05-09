@@ -19,6 +19,7 @@ import { getScopedSettings } from "shared/settings";
 import { MetricInterface } from "back-end/types/metric";
 import { getRegressionAdjustmentsForMetric } from "shared/experiments";
 import { DifferenceType } from "@back-end/types/stats";
+import { isDefined } from "shared/util";
 import { useAuth } from "@/services/auth";
 import { useDefinitions } from "@/services/DefinitionsContext";
 import { getExposureQuery } from "@/services/datasources";
@@ -97,7 +98,7 @@ export default function ConfigureReport({
   const denominatorMetrics: MetricInterface[] = useMemo(() => {
     return denominatorMetricIds
       .map((m) => getMetricById(m as string))
-      .filter(Boolean) as MetricInterface[];
+      .filter(isDefined);
   }, [denominatorMetricIds, getMetricById]);
 
   // todo: type this form

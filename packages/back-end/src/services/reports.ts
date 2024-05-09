@@ -10,6 +10,7 @@ import {
   isBinomialMetric,
   ExperimentMetricInterface,
 } from "shared/experiments";
+import { isDefined } from "shared/util";
 import {
   ExperimentReportArgs,
   ExperimentReportVariation,
@@ -134,7 +135,7 @@ export function getSnapshotSettingsFromReportArgs(
           args.metricOverrides
         )
       )
-      .filter(Boolean) as MetricForSnapshot[],
+      .filter(isDefined),
     activationMetric: args.activationMetric || null,
     attributionModel: args.attributionModel || "firstExposure",
     datasourceId: args.datasource,
