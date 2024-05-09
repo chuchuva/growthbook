@@ -57,7 +57,7 @@ export default function SingleRoleSelector({
         sort={false}
         formatOptionLabel={(value) => {
           const r = roles.find((r) => r.id === value.label);
-          if (!r) return undefined;
+          if (!r) return <></>;
           return (
             <div className="d-flex align-items-center">
               <strong style={{ width: 110 }}>{r.id}</strong>
